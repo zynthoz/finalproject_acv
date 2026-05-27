@@ -1,0 +1,154 @@
+ body {
+      background-color: #f7f4ef;
+      font-family: 'Lato', sans-serif;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #2c3e50;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      letter-spacing: 2px;
+      font-size: 1.4rem;
+      padding: 14px 20px;
+    }
+
+    .main-section {
+      padding-top: 120px;
+      padding-bottom: 80px;
+    }
+
+    .billing-card {
+      background: white;
+      border: none;
+      overflow: hidden;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    }
+
+    .left-panel {
+      background: #2c3e50;
+      color: white;
+      padding: 60px 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-panel h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      line-height: 1.2;
+      color: #c8a96e;
+    }
+
+    .left-panel p {
+      color: rgba(255,255,255,0.7);
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+
+    .form-section {
+      padding: 50px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      border-radius: 0;
+      border: 1px solid #ddd;
+      padding: 14px;
+      font-size: 0.9rem;
+      box-shadow: none !important;
+    }
+
+    .form-control:focus {
+      border-color: #c8a96e;
+    }
+
+    .option-box {
+      background: #faf9f7;
+      padding: 25px;
+      border: 1px solid #eee;
+      height: 100%;
+    }
+
+    .option-box h5 {
+      font-family: 'Playfair Display', serif;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .option-box label {
+      display: block;
+      margin-bottom: 12px;
+      color: #555;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: #c8a96e;
+      border: none;
+      color: white;
+      padding: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: #b8945a;
+    }
+
+    .result-card {
+      margin-top: 50px;
+      background: white;
+      padding: 40px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    }
+
+    .result-title {
+      font-family: 'Playfair Display', serif;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .result-row {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .total-box {
+      background: #2c3e50;
+      color: white;
+      padding: 25px;
+      margin-top: 30px;
+    }
+
+    .total-box h3 {
+      font-family: 'Playfair Display', serif;
+      color: #c8a96e;
+      margin: 0;
+    }
+

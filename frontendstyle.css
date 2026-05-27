@@ -1,0 +1,334 @@
+body {
+  font-family: 'Lato', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #2c3e50;
+  padding: 0;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #fff !important;
+  padding: 14px 20px;
+  letter-spacing: 2px;
+}
+
+.navbar-nav .nav-link {
+  color: #ccc !important;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 18px 16px !important;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #fff !important;
+  background-color: #1a252f;
+}
+
+.btn-reserve {
+  background-color: #c8a96e;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 18px 22px;
+  margin: 0;
+  text-decoration: none;
+}
+
+.btn-reserve:hover {
+  background-color: #b8945a;
+  color: #fff;
+}
+
+.frontsection {
+  background-image: url('images/infinity1.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 85vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.frontOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.frontText {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.frontText .tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c8a96e;
+  margin-bottom: 16px;
+}
+
+.frontText h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.hero-text .sub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+}
+
+.btnbook {
+  border: 2px solid #c8a96e;
+  color: #fff;
+  background: transparent;
+  border-radius: 0;
+  padding: 12px 36px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnbook:hover {
+  background-color: #c8a96e;
+  color: #fff;
+}
+
+.section-label {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c8a96e;
+  margin-bottom: 10px;
+}
+
+.section-text {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+.section-link,
+.basic-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid #2c3e50;
+  background: #fff;
+  color: #2c3e50;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0;
+}
+
+.section-link:hover,
+.basic-btn:hover {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.about-section {
+  padding: 90px 0;
+  background-color: #faf9f7;
+}
+
+.about-section img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+.rooms-section {
+  padding: 90px 0;
+  background-color: #faf9f7;
+}
+
+.room-card {
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.room-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.room-card-body {
+  padding: 24px;
+  background-color: #fff;
+}
+
+.room-card-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.room-card-body p {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.room-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #eee;
+  padding-top: 14px;
+}
+
+.room-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.quote-section {
+  padding: 80px 0;
+  background-color: #f0ede8;
+  text-align: center;
+}
+
+.quote-section blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #2c3e50;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  border: none;
+}
+
+.quote-section p.author {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c8a96e;
+}
+
+.site-footer {
+  background-color: #1a252f;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 70px 0 30px;
+}
+
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.footer-tagline {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.footer-heading {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c8a96e;
+  margin-bottom: 14px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #c8a96e;
+}
+
+.newsletter-row {
+  display: flex;
+}
+
+.newsletter-row input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: none;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  outline: none;
+}
+
+.newsletter-row button {
+  background: #c8a96e;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.newsletter-row button:hover {
+  background: #b8945a;
+}
+
+.icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 50px;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+
