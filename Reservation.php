@@ -19,49 +19,49 @@ $amenities_sql = "SELECT * FROM tbl_amenities ORDER BY amenity_name ASC";
 $amenities_result = $conn->query($amenities_sql);
 
 $rooms_data = array();
-if ($rooms_result && $rooms_result->num_rows > 0) {
-    while ($r = $rooms_result->fetch_assoc()) {
-        $rooms_data[] = $r;
-    }
+if ($rooms_result) {
+  while ($r = $rooms_result->fetch_assoc()) {
+    $rooms_data[] = $r;
+  }
 }
 
 $packages_data = array();
-if ($packages_result && $packages_result->num_rows > 0) {
+if ($packages_result) {
   while ($pkg = $packages_result->fetch_assoc()) {
-    $packages_data[] = $pkg;
+      $packages_data[] = $pkg;
   }
 }
 
 $amenities_data = array();
-if ($amenities_result && $amenities_result->num_rows > 0) {
+if ($amenities_result) {
   while ($amenity = $amenities_result->fetch_assoc()) {
-    $amenities_data[] = $amenity;
+      $amenities_data[] = $amenity;
   }
 }
 
 $package_accommodations = array();
 $acc_map_result = $conn->query("SELECT pa.package_id, a.accommodation_id, a.accommodation_name FROM tbl_package_accommodations pa JOIN tbl_accommodations a ON pa.accommodation_id = a.accommodation_id");
-if ($acc_map_result && $acc_map_result->num_rows > 0) {
+if ($acc_map_result) {
   while ($row = $acc_map_result->fetch_assoc()) {
-    $package_accommodations[$row['package_id']] = array(
-      'id' => $row['accommodation_id'],
-      'name' => $row['accommodation_name']
-    );
+      $package_accommodations[$row['package_id']] = array(
+        'id' => $row['accommodation_id'],
+        'name' => $row['accommodation_name']
+      );
   }
 }
 
 $package_amenities = array();
 $package_amenity_ids = array();
 $amen_map_result = $conn->query("SELECT pam.package_id, am.amenity_id, am.amenity_name FROM tbl_package_amenities pam JOIN tbl_amenities am ON pam.amenity_id = am.amenity_id ORDER BY am.amenity_name");
-if ($amen_map_result && $amen_map_result->num_rows > 0) {
+if ($amen_map_result) {
   while ($row = $amen_map_result->fetch_assoc()) {
-    $pkg_id = $row['package_id'];
-    if (!isset($package_amenities[$pkg_id])) {
-      $package_amenities[$pkg_id] = array();
-      $package_amenity_ids[$pkg_id] = array();
-    }
-    $package_amenities[$pkg_id][] = $row['amenity_name'];
-    $package_amenity_ids[$pkg_id][] = $row['amenity_id'];
+      $pkg_id = $row['package_id'];
+      if (!isset($package_amenities[$pkg_id])) {
+        $package_amenities[$pkg_id] = array();
+        $package_amenity_ids[$pkg_id] = array();
+      }
+      $package_amenities[$pkg_id][] = $row['amenity_name'];
+      $package_amenity_ids[$pkg_id][] = $row['amenity_id'];
   }
 }
 
@@ -141,9 +141,9 @@ if (isset($_POST['book_reservation'])) {
       $amen_map_stmt->bind_param("i", $package_id);
       $amen_map_stmt->execute();
       $amen_map_result = $amen_map_stmt->get_result();
-      if ($amen_map_result && $amen_map_result->num_rows > 0) {
+      if ($amen_map_result) {
         while ($amen_row = $amen_map_result->fetch_assoc()) {
-          $amenity_ids[] = $amen_row['amenity_id'];
+            $amenity_ids[] = $amen_row['amenity_id'];
         }
       }
       $amen_map_stmt->close();
@@ -194,10 +194,10 @@ if (isset($_POST['book_reservation'])) {
       $amenity_sql = "SELECT amenity_name, price_per_use FROM tbl_amenities WHERE amenity_id IN ($amenity_id_list)";
       $amenity_result = $conn->query($amenity_sql);
 
-      if ($amenity_result && $amenity_result->num_rows > 0) {
+      if ($amenity_result) {
         while ($amenity_row = $amenity_result->fetch_assoc()) {
-          $amenity_total += floatval($amenity_row['price_per_use']);
-          $amenity_names[] = $amenity_row['amenity_name'];
+            $amenity_total += floatval($amenity_row['price_per_use']);
+            $amenity_names[] = $amenity_row['amenity_name'];
         }
       }
     }
@@ -690,32 +690,6 @@ if (isset($_POST['book_reservation'])) {
     }
     }
 
-  function enforceAccommodationMode() {
-      if (parseInt(selectPackage.value) > 0 || selectRoom.disabled) {
-        return;
-      }
-    const hasRoom = !!selectRoom.value;
-    if (hasRoom) {
-      selectPackage.value = "0";
-      selectPackage.disabled = true;
-      bundleDetailsBox.style.display = "none";
-      bundleNameDisplay.innerText = "";
-      bundleDescriptionDisplay.innerText = "Choose a bundle to see what is included.";
-      bundlePriceDisplay.innerText = "₱0.00";
-      bundleAccommodationDisplay.innerText = "";
-      bundleAmenitiesDisplay.innerHTML = "";
-        accommodationSection.style.display = "block";
-        amenitiesSection.style.display = "block";
-      let idx = 0;
-      while (idx < amenityChecks.length) {
-        amenityChecks[idx].disabled = false;
-        idx = idx + 1;
-      }
-    } else {
-      selectPackage.disabled = false;
-    }
-  }
-
   function calculatePrice() {
       const selectedId = parseInt(selectRoom.value);
       const selectedPackageId = parseInt(selectPackage.value);
@@ -796,12 +770,10 @@ if (isset($_POST['book_reservation'])) {
   }
 
   selectRoom.addEventListener("change", function() {
-      enforceAccommodationMode();
       calculatePrice();
   });
   selectPackage.addEventListener("change", function() {
       applyBundleAutofill();
-      enforceAccommodationMode();
       calculatePrice();
   });
   let b = 0;
@@ -834,7 +806,6 @@ if (isset($_POST['book_reservation'])) {
   txtCheckOut.addEventListener("change", calculatePrice);
 
   applyBundleAutofill();
-  enforceAccommodationMode();
   calculatePrice();
 
   <?php if (!empty($success_message)): ?>

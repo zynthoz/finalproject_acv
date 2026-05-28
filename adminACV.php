@@ -79,13 +79,10 @@ if (isset($_POST['add_package'])) {
     $name = $_POST['package_name'];
     $desc = $_POST['description'];
     $price = $_POST['price'];
-  $acc_id = isset($_POST['package_accommodation_id']) ? intval($_POST['package_accommodation_id']) : 0;
+  $acc_id = $_POST['package_accommodation_id'];
   $amenity_ids = array();
-  if (isset($_POST['package_amenity_ids']) && is_array($_POST['package_amenity_ids'])) {
-    foreach ($_POST['package_amenity_ids'] as $amenity_id) {
-      $amenity_ids[] = intval($amenity_id);
-    }
-    $amenity_ids = array_values(array_unique(array_filter($amenity_ids)));
+  if (isset($_POST['package_amenity_ids'])) {
+    $amenity_ids = $_POST['package_amenity_ids'];
   }
 
   $sql = "INSERT INTO tbl_packages (package_name, description, price, inclusion_details) VALUES ('$name', '$desc', '$price', '')";
@@ -347,21 +344,17 @@ if (isset($_POST['add_user'])) {
 
       $package_accommodations = array();
       $acc_result = $conn->query("SELECT pa.package_id, a.accommodation_name FROM tbl_package_accommodations pa JOIN tbl_accommodations a ON pa.accommodation_id = a.accommodation_id");
-      if ($acc_result && $acc_result->num_rows > 0) {
-        while ($row = $acc_result->fetch_assoc()) {
-          $package_accommodations[$row['package_id']] = $row['accommodation_name'];
-        }
+      while ($row = $acc_result->fetch_assoc()) {
+        $package_accommodations[$row['package_id']] = $row['accommodation_name'];
       }
 
       $package_amenities = array();
       $amen_result = $conn->query("SELECT pam.package_id, am.amenity_name FROM tbl_package_amenities pam JOIN tbl_amenities am ON pam.amenity_id = am.amenity_id ORDER BY am.amenity_name");
-      if ($amen_result && $amen_result->num_rows > 0) {
-        while ($row = $amen_result->fetch_assoc()) {
-          if (!isset($package_amenities[$row['package_id']])) {
-            $package_amenities[$row['package_id']] = array();
-          }
-          $package_amenities[$row['package_id']][] = $row['amenity_name'];
+      while ($row = $amen_result->fetch_assoc()) {
+        if (!isset($package_amenities[$row['package_id']])) {
+          $package_amenities[$row['package_id']] = array();
         }
+        $package_amenities[$row['package_id']][] = $row['amenity_name'];
       }
         ?>
         <h2 class="page-title">Packages</h2>
@@ -375,23 +368,30 @@ if (isset($_POST['add_user'])) {
             <input type="number" step="0.01" name="price" placeholder="Price" required>
             <select name="package_accommodation_id" required>
               <option value="" disabled selected>Select Accommodation</option>
-              <?php if ($accommodations_list && $accommodations_list->num_rows > 0) { ?>
+              <?php if ($accommodations_list) { ?>
                 <?php while ($acc = $accommodations_list->fetch_assoc()) { ?>
                   <option value="<?php echo $acc['accommodation_id']; ?>"><?php echo htmlspecialchars($acc['accommodation_name']); ?></option>
                 <?php } ?>
               <?php } ?>
             </select>
             <div class="border p-2" style="max-height: 200px; overflow-y: auto;">
-              <?php if ($amenities_list && $amenities_list->num_rows > 0) { ?>
-                <?php while ($amen = $amenities_list->fetch_assoc()) { ?>
-                  <label style="display:block; font-size:0.85rem;">
-                    <input type="checkbox" name="package_amenity_ids[]" value="<?php echo $amen['amenity_id']; ?>">
-                    <?php echo htmlspecialchars($amen['amenity_name']); ?>
-                  </label>
-                <?php } ?>
-              <?php } else { ?>
-                <div class="text-muted">No amenities available.</div>
-              <?php } ?>
+              <?php
+                $has_amenities = false;
+                if ($amenities_list) {
+                  while ($amen = $amenities_list->fetch_assoc()) {
+                    $has_amenities = true;
+                    ?>
+                    <label style="display:block; font-size:0.85rem;">
+                      <input type="checkbox" name="package_amenity_ids[]" value="<?php echo $amen['amenity_id']; ?>">
+                      <?php echo htmlspecialchars($amen['amenity_name']); ?>
+                    </label>
+                    <?php
+                  }
+                }
+                if (!$has_amenities) {
+                  echo '<div class="text-muted">No amenities available.</div>';
+                }
+              ?>
             </div>
             <button type="submit" name="add_package" class="btn-gold">Save</button>
           </form>

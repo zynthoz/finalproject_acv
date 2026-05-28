@@ -7,18 +7,9 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
-$role = strtolower($_SESSION['acc_type']);
-if ($role != 'customer') {
-    if ($role == 'admin') {
-        header("Location: adminACV.php");
-        exit;
-    } else if ($role == 'employee') {
-        header("Location: employeeACV.php");
-        exit;
-    } else {
-        header("Location: loginACV.php");
-        exit;
-    }
+if ($_SESSION['acc_type'] != 'customer') {
+  header("Location: loginACV.php");
+  exit;
 }
 
 $user_id = $_SESSION['id'];
